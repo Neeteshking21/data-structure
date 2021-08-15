@@ -210,6 +210,30 @@ public class BinaryTree{
         System.out.print(stk);
     }
 
+        static void diagonalTraversal(Node root){
+            Queue<Node> trave = new LinkedList<>();
+            Queue<Node> store = new LinkedList<>();
+            ArrayList<Integer> arr = new ArrayList<>();
+
+            trave.add(root);
+            while(!trave.isEmpty() && !store.isEmpty()){
+                while(!trave.isEmpty()){
+                    Node temp = trave.remove();
+                    store.add(temp); 
+                    System.out.print(temp.data +" ");
+                    if(temp.right!=null)
+                        trave.add(temp.right);
+                    
+                }
+                System.out.println();
+
+                Queue<Node> temp = trave;
+                trave = store;
+                store = temp;
+            }
+            
+        }
+
     static int height(Node root){
     	if(root == null) return 0;
     	int ldepth = height(root.left);	// return 0 if node is null 
@@ -219,6 +243,8 @@ public class BinaryTree{
     }
 }
 
+
+
 class Node{
     Node left, right;
     int data;
@@ -226,6 +252,4 @@ class Node{
         this.data = data;
     }
 }
-
-
 
